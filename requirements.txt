@@ -1,0 +1,15 @@
+# App framework
+streamlit>=1.31
+
+# Core scientific stack
+numpy>=1.23
+pandas>=1.5
+
+# Geospatial stack (explicit to avoid deployment failures)
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+fiona>=1.9
+
+# Visualization
+plotly>=5.18

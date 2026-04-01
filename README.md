@@ -32,14 +32,3 @@ Interactive Streamlit app to explore how **component weights** (Exposure, Sensit
   - `plotly`
 
 > Installing GeoPandas may require GDAL / GEOS / PROJ system dependencies.
-
----
-
-## Installation
-
-```bash
-python -m venv .venv
-source .venv/bin/activate   # macOS / Linux
-# .venv\Scripts\activate    # Windows
-
-pip install streamlit geopandas pandas numpy plotly

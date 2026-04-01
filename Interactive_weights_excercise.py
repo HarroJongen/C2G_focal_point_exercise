@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 16 14:21:02 2026
-
-@author: jonge_ho
-"""
-
 import streamlit as st
 import geopandas as gpd
 import numpy as np

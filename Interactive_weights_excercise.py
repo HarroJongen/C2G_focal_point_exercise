@@ -226,7 +226,7 @@ geojson = gdf_plot.set_index("__pid__").geometry.__geo_interface__
 labels_vuln = ["Least vulnerable", "Less vulnerable", "Vulnerable", "More vulnerable", "Most vulnerable"]
 labels_expo = ["Least exposed", "Less exposed", "Exposed", "More exposed", "Most exposed"]
 labels_sens = ["Least sensitive", "Less sensitive", "Sensitive", "More sensitive", "Most sensitive"]
-labels_adap = ["Highest capacity", "Higher capacity", "Capacity", "Lower capacity", "Lowest capacity"]
+labels_adap = ["Highest capacity", "Higher capacity", "Average capacity", "Lower capacity", "Lowest capacity"]
 
 cmap_vuln = make_color_map(labels_vuln)
 cmap_expo = make_color_map(labels_expo)

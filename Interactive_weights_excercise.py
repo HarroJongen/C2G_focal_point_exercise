@@ -24,7 +24,7 @@ COMPONENT_INDICATORS = {
         "Sensitivity": ["Populaiton density", "People below 6 or over 65 years", "People below 9 or over 70 years", "Average distance to a hospital"],
         "Adaptive capacity": ["Household purchasing power", "People over 65 years living alone", "Blue and green fraction"],
     },
-    "Disengagements from nature": {
+    "Disengagement from nature": {
         "Exposure": ["Distance to green"],
         "Sensitivity": [
             "Population density",

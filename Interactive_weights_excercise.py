@@ -31,7 +31,10 @@ COMPONENT_INDICATORS = {
             "Large green area per person",
             "Cultural ecosystem services from green",
         ],
-        "Adaptive capacity": ["Landscape diversity", "Green diversity"],
+        "Adaptive capacity": [
+            "Surface cover suitability for biodiversity",
+            "Diversity of green",
+        ],
     },
 }
 

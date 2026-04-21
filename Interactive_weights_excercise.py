@@ -13,7 +13,7 @@ st.title("Vulnerability weights exercise")
 COMPONENT_INDICATORS = {
     "Floods": {
         "Exposure": ["Average flood depth"],
-        "Sensitivity": ["People below 6 or over 65 years", "People below 9 or over 70 years", "Critical infrastructure"],
+        "Sensitivity": ["People below 6 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "Critical infrastructure"],
         "Adaptive capacity": ["Household purchasing power", "Average distance to a hospital"],
     },
     "Heat": {
@@ -21,7 +21,7 @@ COMPONENT_INDICATORS = {
             "Number of hours above 30 degrees per year",
             "Number of nights exceeding 20 degrees per year",
         ],
-        "Sensitivity": ["Populaiton density", "People below 6 or over 65 years", "People below 9 or over 70 years", "Average distance to a hospital"],
+        "Sensitivity": ["Populaiton density", "People below 6 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "Average distance to a hospital"],
         "Adaptive capacity": ["Household purchasing power", "People over 65 years living alone", "Blue and green fraction", "Vegetation diversity"],
     },
     "Disengagement from nature": {
@@ -221,8 +221,13 @@ with st.sidebar:
 
 
 gdf_plot = gdf_vuln.reset_index(drop=True).copy()
-if "name" not in gdf_plot.columns:
+if "name" in gdf_plot.columns:
+    gdf_plot["name"] = gdf_plot["name"]
+if "WIJKNAAM" not in gdf_plot.columns:
+    gdf_plot["name"] = gdf_plot["WIJKNAAM"]
+else:
     gdf_plot["name"] = np.arange(len(gdf_plot))
+
 gdf_plot["__pid__"] = gdf_plot.index.astype(str)
 geojson = gdf_plot.set_index("__pid__").geometry.__geo_interface__
 

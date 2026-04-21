@@ -223,7 +223,7 @@ with st.sidebar:
 gdf_plot = gdf_vuln.reset_index(drop=True).copy()
 if "name" in gdf_plot.columns:
     gdf_plot["name"] = gdf_plot["name"]
-if "WIJKNAAM" not in gdf_plot.columns:
+elif "WIJKNAAM" in gdf_plot.columns:
     gdf_plot["name"] = gdf_plot["WIJKNAAM"]
 else:
     gdf_plot["name"] = np.arange(len(gdf_plot))

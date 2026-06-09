@@ -14,7 +14,7 @@ COMPONENT_INDICATORS = {
     "Floods": {
         "Exposure": ["Average flood depth"],
         "Sensitivity": ["People below 6 or over 65 years", "People below 4 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "People below 5 or over 70 years", "Critical infrastructure"],
-        "Adaptive capacity": ["Household purchasing power", "Average distance to a hospital"],
+        "Adaptive capacity": ["Household purchasing power", "Average distance to a hospital", "Vegetation diversity", "Diversity of green"],
     },
     "Heat": {
         "Exposure": [

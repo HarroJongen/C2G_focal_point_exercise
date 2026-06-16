@@ -21,7 +21,7 @@ COMPONENT_INDICATORS = {
             "Number of hours above 30 degrees per year",
             "Number of nights exceeding 20 degrees per year",
         ],
-        "Sensitivity": ["Populaiton density", "People below 6 or over 65 years", "People below 4 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "People below 5 or over 70 years", "Average distance to a hospital"],
+        "Sensitivity": ["Population density", "People below 6 or over 65 years", "People below 4 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "People below 5 or over 70 years", "Average distance to a hospital"],
         "Adaptive capacity": ["Household purchasing power", "People over 65 years living alone", "People over 70 years living alone", "Blue and green fraction", "Vegetation diversity"],
     },
     "Disengagement from nature": {

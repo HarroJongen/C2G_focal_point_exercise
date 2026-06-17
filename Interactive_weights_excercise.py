@@ -252,7 +252,7 @@ labels_adap = ["Highest capacity", "Higher capacity", "Average capacity", "Lower
 cmap_vuln = make_color_map(labels_vuln, red=True)
 cmap_expo = make_color_map(labels_expo, red=True)
 cmap_sens = make_color_map(labels_sens, red=True)
-cmap_adap = make_color_map(labels_adap, red=False)
+cmap_adap = make_color_map(labels_adap, red=True)
 
 gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln, invert=False)
 gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo, invert=False)

@@ -116,8 +116,21 @@ reds5 = {
     4: "#a50f15",
 }
 
-def make_color_map(labels):
-    return {lbl: reds5[i] for i, lbl in enumerate(labels)}
+
+greens5 = {
+    0: "#edf8e9",
+    1: "#bae4b3",
+    2: "#74c476",
+    3: "#31a354",
+    4: "#006d2c",
+}
+
+def make_color_map(labels, red):
+    if red:
+        color_map = {lbl: reds5[i] for i, lbl in enumerate(labels)}
+    else:
+        color_map  = {lbl: greens5[i] for i, lbl in enumerate(labels)}
+    return color_map
 
 def available_indicators(gdf, indicators):
     return [c for c in indicators if c in gdf.columns]
@@ -236,10 +249,10 @@ labels_expo = ["Least exposed", "Less exposed", "Exposed", "More exposed", "Most
 labels_sens = ["Least sensitive", "Less sensitive", "Sensitive", "More sensitive", "Most sensitive"]
 labels_adap = ["Highest capacity", "Higher capacity", "Average capacity", "Lower capacity", "Lowest capacity"]
 
-cmap_vuln = make_color_map(labels_vuln)
-cmap_expo = make_color_map(labels_expo)
-cmap_sens = make_color_map(labels_sens)
-cmap_adap = make_color_map(labels_adap)
+cmap_vuln = make_color_map(labels_vuln, red=True)
+cmap_expo = make_color_map(labels_expo, red=True)
+cmap_sens = make_color_map(labels_sens, red=True)
+cmap_adap = make_color_map(labels_adap, red=False)
 
 gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln, invert=False)
 gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo, invert=False)

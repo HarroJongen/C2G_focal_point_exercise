@@ -125,11 +125,33 @@ greens5 = {
     4: "#006d2c",
 }
 
-def make_color_map(labels, red):
-    if red:
+
+blues5 = {
+    0: "#eff3ff",
+    1: "#bdd7e7",
+    2: "#6baed6",
+    3: "#3182bd",
+    4: "#08519c",
+}
+
+yellows5 = {
+    0: "#ffffe5",
+    1: "#fff7bc",
+    2: "#fee391",
+    3: "#fec44f",
+    4: "#fe9929",
+}
+
+
+def make_color_map(labels, base_color="red"):
+    if base_color=="red":
         color_map = {lbl: reds5[i] for i, lbl in enumerate(labels)}
-    else:
-        color_map  = {lbl: greens5[i] for i, lbl in enumerate(labels)}
+    elif base_color=="green":
+        color_map = {lbl: greens5[i] for i, lbl in enumerate(labels)}
+    elif base_color=="blue":
+        color_map  = {lbl: blues5[i] for i, lbl in enumerate(labels)}
+    elif base_color=="yellow":
+        color_map  = {lbl: yellows5[i] for i, lbl in enumerate(labels)}
     return color_map
 
 def available_indicators(gdf, indicators):
@@ -247,12 +269,18 @@ geojson = gdf_plot.set_index("__pid__").geometry.__geo_interface__
 labels_vuln = ["Least vulnerable", "Less vulnerable", "Vulnerable", "More vulnerable", "Most vulnerable"]
 labels_expo = ["Least exposed", "Less exposed", "Exposed", "More exposed", "Most exposed"]
 labels_sens = ["Least sensitive", "Less sensitive", "Sensitive", "More sensitive", "Most sensitive"]
-labels_adap = ["Highest capacity", "Higher capacity", "Average capacity", "Lower capacity", "Lowest capacity"]
+labels_adap = ["Lowest capacity", "Lower capacity", "Average capacity", "Higher capacity", "Highest capacity"]
 
-cmap_vuln = make_color_map(labels_vuln, red=True)
-cmap_expo = make_color_map(labels_expo, red=True)
-cmap_sens = make_color_map(labels_sens, red=True)
-cmap_adap = make_color_map(labels_adap, red=True)
+if hazard == "Floods":
+    vulnerability_color = "blue"
+if hazard == "Heat":
+    vulnerability_color = "red"
+if hazard == "Disengagement from nature":
+    vulnerability_color = "yellow"
+cmap_vuln = make_color_map(labels_vuln, base_color=vulnerability_color)
+cmap_expo = make_color_map(labels_expo, base_color=vulnerability_color)
+cmap_sens = make_color_map(labels_sens, base_color="green")
+cmap_adap = make_color_map(labels_adap, base_color=vulnerability_color)
 
 gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln, invert=False)
 gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo, invert=False)

@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
+from statistics import NormalDist
 import tempfile
 import shutil
 
@@ -90,22 +91,21 @@ def transparentify(fig):
     return fig
 
 
-def classify_series(s, labels, invert=False):
-    x = pd.to_numeric(s, errors="coerce")
+
+def classify_series(z, labels, invert=False):
+    z = pd.to_numeric(z, errors="coerce")
+    if not np.isfinite(z).any() or z.nunique(dropna=True) <= 1:
+        mid = labels[len(labels) // 2]
+        return pd.Categorical([mid] * len(z), categories=labels, ordered=True)
+
     if invert:
-        x = -x
-    try:
-        cats = pd.qcut(x, q=5, labels=labels, duplicates="drop")
-        if hasattr(cats, "cat") and len(cats.cat.categories) == len(labels):
-            return pd.Categorical(cats, categories=labels, ordered=True)
-    except Exception:
-        pass
-    if not np.isfinite(x).any() or x.min() == x.max():
-        mid = labels[len(labels)//2]
-        return pd.Categorical([mid]*len(x), categories=labels, ordered=True)
-    bins = np.linspace(x.min(), x.max(), 6)
-    cats = pd.cut(x, bins=bins, labels=labels, include_lowest=True, duplicates="drop")
+        z = -z
+
+    qs = [NormalDist().inv_cdf(p) for p in (0.2, 0.4, 0.6, 0.8)]
+    bins = [-np.inf, *qs, np.inf]
+    cats = pd.cut(z, bins=bins, labels=labels, include_lowest=True)
     return pd.Categorical(cats, categories=labels, ordered=True)
+
 
 
 reds5 = {
@@ -282,10 +282,10 @@ cmap_expo = make_color_map(labels_expo, base_color=vulnerability_color)
 cmap_sens = make_color_map(labels_sens, base_color=vulnerability_color)
 cmap_adap = make_color_map(labels_adap, base_color="green")
 
-gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln, invert=False)
-gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo, invert=False)
-gdf_plot["Sensitivity_class"] = classify_series(gdf_plot["Sensitivity"], labels_sens, invert=False)
-gdf_plot["Adaptive_class"] = classify_series(gdf_plot["Adaptive"], labels_adap, invert=True)
+gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln)
+gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo)
+gdf_plot["Sensitivity_class"] = classify_series(gdf_plot["Sensitivity"], labels_sens)
+gdf_plot["Adaptive_class"] = classify_series(gdf_plot["Adaptive"], labels_adap)
 
 left, right = st.columns([0.5, 1], gap="small")
 

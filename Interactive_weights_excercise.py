@@ -108,6 +108,22 @@ def classify_series(z, labels, invert=False):
 
 
 
+def ensure_all_categories(df, col, labels):
+    missing = [lab for lab in labels if lab not in df[col].astype(str).unique()]
+    if not missing:
+        return df
+
+    dummy = pd.DataFrame({
+        col: missing,
+        "__pid__": [f"dummy_{i}" for i in range(len(missing))],
+        "geometry": [None] * len(missing),
+    })
+    for c in df.columns:
+        if c not in dummy.columns:
+            dummy[c] = None
+
+    return pd.concat([df, dummy], ignore_index=True)
+
 reds5 = {
     0: "#fee5d9",
     1: "#fcae91",
@@ -286,6 +302,12 @@ gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln)
 gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo)
 gdf_plot["Sensitivity_class"] = classify_series(gdf_plot["Sensitivity"], labels_sens)
 gdf_plot["Adaptive_class"] = classify_series(gdf_plot["Adaptive"], labels_adap)
+
+
+gdf_plot = ensure_all_categories(gdf_plot, "Exposure_class", labels_expo)
+gdf_plot = ensure_all_categories(gdf_plot, "Sensitivity_class", labels_sens)
+gdf_plot = ensure_all_categories(gdf_plot, "Adaptive_class", labels_adap)
+gdf_plot = ensure_all_categories(gdf_plot, "Vuln_class", labels_vuln)
 
 left, right = st.columns([0.5, 1], gap="small")
 

@@ -279,8 +279,8 @@ if hazard == "Disengagement from nature":
     vulnerability_color = "yellow"
 cmap_vuln = make_color_map(labels_vuln, base_color=vulnerability_color)
 cmap_expo = make_color_map(labels_expo, base_color=vulnerability_color)
-cmap_sens = make_color_map(labels_sens, base_color="green")
-cmap_adap = make_color_map(labels_adap, base_color=vulnerability_color)
+cmap_sens = make_color_map(labels_sens, base_color=vulnerability_color)
+cmap_adap = make_color_map(labels_adap, base_color="green")
 
 gdf_plot["Vuln_class"] = classify_series(gdf_plot["Vulnerability"], labels_vuln, invert=False)
 gdf_plot["Exposure_class"] = classify_series(gdf_plot["Exposure"], labels_expo, invert=False)

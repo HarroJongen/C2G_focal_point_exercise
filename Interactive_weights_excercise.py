@@ -274,6 +274,8 @@ with st.sidebar:
 gdf_plot = gdf_vuln.reset_index(drop=True).copy()
 if "name" in gdf_plot.columns:
     gdf_plot["name"] = gdf_plot["name"]
+elif "Neighbourhood name" in gdf_plot.columns:
+    gdf_plot["name"] = gdf_plot["Neighbourhood name"]
 elif "WIJKNAAM" in gdf_plot.columns:
     gdf_plot["name"] = gdf_plot["WIJKNAAM"]
 else:

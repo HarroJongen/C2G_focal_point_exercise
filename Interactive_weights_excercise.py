@@ -15,7 +15,7 @@ COMPONENT_INDICATORS = {
     "Floods": {
         "Exposure": ["Average flood depth"],
         "Sensitivity": ["People below 6 or over 65 years", "People below 4 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "People below 5 or over 70 years", "Critical infrastructure"],
-        "Adaptive capacity": ["Household purchasing power", "Average distance to a hospital", "Vegetation diversity", "Diversity of green"],
+        "Adaptive capacity": ["Household purchasing power", "Average distance to a hospital", "Vegetation diversity", "Vegetation type diversity", "Tree diversity", "Diversity of green"],
     },
     "Heat": {
         "Exposure": [
@@ -23,7 +23,7 @@ COMPONENT_INDICATORS = {
             "Number of nights exceeding 20 degrees per year",
         ],
         "Sensitivity": ["Population density", "People below 6 or over 65 years", "People below 4 or over 65 years", "People below 9 or over 70 years", "People below 15 or over 65 years", "People below 5 or over 70 years", "Average distance to a hospital"],
-        "Adaptive capacity": ["Household purchasing power", "People over 65 years living alone", "People over 70 years living alone", "Blue and green fraction", "Vegetation diversity"],
+        "Adaptive capacity": ["Household purchasing power", "People over 65 years living alone", "People over 70 years living alone", "Blue and green fraction", "Vegetation diversity", "Vegetation type diversity", "Tree diversity"],
     },
     "Disengagement from nature": {
         "Exposure": ["Distance to green"],

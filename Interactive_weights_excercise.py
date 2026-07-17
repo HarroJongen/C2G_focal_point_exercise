@@ -9,7 +9,7 @@ import tempfile
 import shutil
 
 st.set_page_config(layout="wide")
-st.title("Vulnerability weights exercise")
+st.title("Vulnerability weights tool")
 
 COMPONENT_INDICATORS = {
     "Floods": {
